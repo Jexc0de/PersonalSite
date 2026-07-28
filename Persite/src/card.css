@@ -1,0 +1,208 @@
+
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+  padding: 22px 24px 24px 36px;
+  transition: border-color 0.2s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 18px;
+  width: 1px;
+  background: rgba(0, 108, 103, 0.6);
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.card h2 {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.card p + p {
+  margin-top: 12px;
+}
+
+
+.card-eyebrow {
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.card-link {
+  color: var(--accent-bright);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+
+.demo-box {
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  background: var(--well);
+  border: 2px dashed var(--accent);
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.demo-box-label {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--muted);
+  padding: 0 12px;
+  text-align: center;
+}
+
+
+.project-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.project-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.project-name {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.project-desc {
+  font-size: 15px;
+  color: var(--text);
+}
+
+
+.project-status {
+  align-self: flex-start;
+  margin-top: 6px;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  border: 1px dashed var(--accent-bright);
+  border-radius: 2px;
+  padding: 2px 9px;
+}
+
+
+.demo-shell {
+  margin: 0 0 16px;
+}
+
+.demo-shell-stage {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--well);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+}
+
+.demo-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.demo-shell-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+.demo-shell-title {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.demo-shell-title::before {
+  content: 'fig. 1 — '; /* hardcoded until there's a second figure */
+}
+
+
+@media (max-width: 480px) {
+  .card {
+    padding: 18px 16px 20px 28px;
+  }
+  .card::before {
+    left: 14px;
+  }
+}
+
+/* --- Now Playing: live-status placeholder until the API exists */
+.now-playing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.now-playing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  animation: now-playing-pulse 2s ease-in-out infinite;
+}
+
+@keyframes now-playing-pulse {
+  50% { opacity: 0.25; }
+}
+
+.about-list {
+  list-style: none;
+  margin: 10px 0;
+  padding-left: 4px;
+}
+
+.about-list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text);
+}
+
+.about-list li + li {
+  margin-top: 4px;
+}
+
+.about-list li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+  color: var(--accent-bright);
+}

@@ -1,0 +1,250 @@
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--surface);
+  border-bottom: 1px dashed var(--border);
+  z-index: 1000;
+  transition: height var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
+}
+
+.header-container {
+  max-width: var(--content-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-h);
+  transition: font-size var(--transition-speed) ease;
+}
+
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  text-transform: lowercase;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .nav-links a:hover {
+    color: var(--accent-bright);
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+  }
+
+  .nav-links a.resume-link:hover {
+    background: rgba(0, 108, 103, 0.32);
+    text-decoration: none;
+  }
+}
+
+
+.nav-links a.resume-link {
+  padding: 7px 14px;
+  border-radius: 2px;
+  border: 1px dashed var(--accent-bright);
+  background: rgba(0, 108, 103, 0.18);
+  color: var(--accent-bright);
+}
+
+
+
+
+.header-scrolled {
+  height: var(--header-height-scrolled);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+}
+
+.header-scrolled .logo-text {
+  font-size: 1.15rem;
+}
+
+
+@media (max-width: 640px) {
+  .header,
+  .header-scrolled {
+    height: auto;
+  }
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 16px 12px;
+  }
+  .logo-text,
+  .header-scrolled .logo-text {
+    font-size: 1.1rem;
+  }
+  .nav-links {
+    gap: 14px;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+  }
+  .nav-links a.resume-link {
+    padding: 5px 12px;
+  }
+}
+
+
+.hero {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 28px 20px 28px;
+}
+
+
+
+.typewriter {
+  font-family: var(--mono);
+  font-size: 19px;
+  letter-spacing: 0; 
+  color: var(--accent-bright);
+  white-space: pre-wrap;
+}
+
+.typewriter .caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  background: var(--accent-bright);
+  vertical-align: text-bottom;
+  animation: caret-blink 0.8s step-end infinite;
+}
+
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .typewriter {
+    font-size: 13px;
+  }
+}
+
+.card-grid {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-areas:
+    "projects spotify"
+    "projects about"
+    "projects yapping";
+  align-items: start;
+}
+
+.area-projects { grid-area: projects; }
+.area-spotify  { grid-area: spotify; }
+.area-about    { grid-area: about; }
+.area-yapping  { grid-area: yapping; }
+
+@media (max-width: 940px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "spotify"
+      "about"
+      "projects"
+      "yapping";
+  }
+}
+
+.footer {
+  padding: 20px 20px 32px;
+  text-align: center;
+}
+
+.footer-quip {
+  display: inline-block;
+  transform: rotate(-0.8deg);
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.notice {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2000;
+  max-width: 320px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px dashed var(--accent-bright);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+  animation: notice-in 0.25s ease-out;
+}
+
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.notice-text {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.notice-dismiss {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 2px;
+  font-family: var(--mono);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--muted);
+}
+
+.notice-dismiss:hover {
+  color: var(--accent-bright);
+}
+
+@media (max-width: 480px) {
+  .notice {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+}
