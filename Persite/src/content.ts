@@ -72,10 +72,9 @@ export const content = {
   yapping: {
     eyebrow: '[off topic]',
     title: 'Loose Pages',
-    body: 'Movie reviews with a rating out of ten and a few though, random personal thoughts, ' +
+    body: 'Movie reviews with a rating out of ten and a few bits of praise or critics, random thoughts, ' +
   'and project breakdowns that go further than the cards above, ' +
-  'including the parts that broke. Everything else is an argument ' +
-  'I needed to finish somewhere.',
+  'including the parts that broke.',
     linkText: 'Reviews, once the database exists →',
   },
 
