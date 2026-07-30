@@ -8,6 +8,7 @@
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
   padding: 22px 24px 24px 36px;
   transition: border-color 0.2s ease;
+  min-width: 0;
 }
 
 .card::before {
@@ -149,7 +150,7 @@
 }
 
 .demo-shell-title::before {
-  content: 'fig. 1 — '; /* hardcoded until there's a second figure */
+  content: 'fig. 1 — '; 
 }
 
 
@@ -162,8 +163,106 @@
   }
 }
 
-/* --- Now Playing: live-status placeholder until the API exists */
+
 .now-playing {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+
+.now-playing-frame {
+  position: relative;
+  flex-shrink: 0;
+  padding: 6px;
+  background: var(--well);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  line-height: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.now-playing-frame::before,
+.now-playing-frame::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--accent-bright);
+  pointer-events: none;
+}
+
+.now-playing-frame::before {
+  top: -3px;
+  left: -3px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.now-playing-frame::after {
+  right: -3px;
+  bottom: -3px;
+  border-top: none;
+  border-left: none;
+}
+
+.now-playing-art {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+
+.now-playing-meta {
+  min-width: 0;
+}
+
+
+.now-playing-meta p + p {
+  margin-top: 2px;
+}
+
+
+.now-playing-artist,
+.now-playing-album {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--mono);
+}
+
+.now-playing-track {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--text-h);
+}
+
+
+.now-playing-track .card-link {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.now-playing-artist {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.now-playing-album {
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.now-playing-empty {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -173,11 +272,20 @@
 }
 
 .now-playing-dot {
+  display: inline-block;
   width: 8px;
   height: 8px;
+  margin-right: 8px;
   border-radius: 50%;
+  flex-shrink: 0;
   background: var(--accent-bright);
   animation: now-playing-pulse 2s ease-in-out infinite;
+}
+
+
+.now-playing-dot--idle {
+  animation: none;
+  background: var(--muted);
 }
 
 @keyframes now-playing-pulse {

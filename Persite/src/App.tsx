@@ -6,6 +6,7 @@ import Typewriter from './components/Typewriter';
 import Notice from './components/Notice';
 import { content } from './content';
 import { activeDemo } from './demos';
+import { useNowPlaying } from './hooks/useNowPlaying';
 import './App.css';
 
 export default function App() {
@@ -14,6 +15,8 @@ export default function App() {
 
   const [noticeId, setNoticeId] = useState(0);
   const showNotice = () => setNoticeId((n) => n + 1);
+  const nowPlaying = useNowPlaying();
+  const spotifyTitle = nowPlaying?.playing ? spotify.title : spotify.titleIdle;
 
   return (
     <>
@@ -51,13 +54,30 @@ export default function App() {
               )
             )}
           </Card>
-
-          <Card title={spotify.title} className="area-spotify">
-            <p className="now-playing">
-              <span className="now-playing-dot" aria-hidden="true" />
-              {spotify.placeholder}
-            </p>
-          </Card>
+<Card title={spotifyTitle} className="area-spotify">
+  {nowPlaying?.track ? (
+    <div className="now-playing">
+      {nowPlaying.albumArt && (
+        <div className="now-playing-frame">
+          <img className="now-playing-art" src={nowPlaying.albumArt} alt="" width={64} height={64} />
+        </div>
+      )}
+      <div className="now-playing-meta">
+        <p className="now-playing-track">
+          <span className={`now-playing-dot ${nowPlaying.playing ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
+          <a className="card-link" href={nowPlaying.url ?? undefined} target="_blank" rel="noreferrer">{nowPlaying.track}</a>
+        </p>
+        <p className="now-playing-artist">By: {nowPlaying.artist}</p>
+        {nowPlaying.album && <p className="now-playing-album">Album: {nowPlaying.album}</p>}
+      </div>
+    </div>
+  ) : (
+    <p className="now-playing-empty">
+      <span className="now-playing-dot now-playing-dot--idle" aria-hidden="true" />
+      {spotify.placeholder}
+    </p>
+  )}
+</Card>
             <Card title={yapping.title} id="yapping" className="area-yapping">
               <p>{yapping.body}</p>
                 <p>

@@ -151,6 +151,7 @@
   display: grid;
   gap: 24px;
   grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   grid-template-areas:
     "projects spotify"
     "projects about"
@@ -166,6 +167,7 @@
 @media (max-width: 940px) {
   .card-grid {
     grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       "spotify"
       "about"

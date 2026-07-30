@@ -64,6 +64,11 @@ node_modules/
 
 # dotenv environment variables file
 .env
+.env.production
+!Persite/.env.production
 
 # dataconnect generated files
 .dataconnect
+
+__pycache__/
+*.pyc

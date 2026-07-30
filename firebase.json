@@ -6,7 +6,11 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+   "rewrites": [
+      {
+        "source": "/api/**",
+        "run": { "serviceId": "personal-api", "region": "us-central1" }
+      },
       {
         "source": "**",
         "destination": "/index.html"
