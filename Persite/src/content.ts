@@ -39,7 +39,9 @@ export const content = {
   spotify: {
       title: 'From My Spotify: Now Playing',
       titleIdle: 'From My Spotify: Last Played',
-    placeholder: 'Lost signal :(',
+      titleUnknown: 'From My Spotify',
+      placeholder: 'Lost signal :(',
+      loading: 'Getting signal...',
   },
 
   projects: {

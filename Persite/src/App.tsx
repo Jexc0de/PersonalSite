@@ -16,8 +16,13 @@ export default function App() {
   const [noticeId, setNoticeId] = useState(0);
   const showNotice = () => setNoticeId((n) => n + 1);
   const nowPlaying = useNowPlaying();
-  const spotifyTitle = nowPlaying?.playing ? spotify.title : spotify.titleIdle;
-
+  const track = nowPlaying.status === 'ok' && nowPlaying.data.track ? nowPlaying.data : null;
+  const spotifyTitle =
+  nowPlaying.status !== 'ok'
+    ? spotify.titleUnknown
+    : track?.playing
+      ? spotify.title
+      : spotify.titleIdle;
   return (
     <>
       <Header onPendingClick={showNotice} />
@@ -55,26 +60,26 @@ export default function App() {
             )}
           </Card>
 <Card title={spotifyTitle} className="area-spotify">
-  {nowPlaying?.track ? (
+  {track ? (
     <div className="now-playing">
-      {nowPlaying.albumArt && (
+      {track.albumArt && (
         <div className="now-playing-frame">
-          <img className="now-playing-art" src={nowPlaying.albumArt} alt="" width={64} height={64} />
+          <img className="now-playing-art" src={track.albumArt} alt="" width={64} height={64} />
         </div>
       )}
       <div className="now-playing-meta">
         <p className="now-playing-track">
-          <span className={`now-playing-dot ${nowPlaying.playing ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
-          <a className="card-link" href={nowPlaying.url ?? undefined} target="_blank" rel="noreferrer">{nowPlaying.track}</a>
+          <span className={`now-playing-dot ${track.playing ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
+          <a className="card-link" href={track.url ?? undefined} target="_blank" rel="noreferrer">{track.track}</a>
         </p>
-        <p className="now-playing-artist">By: {nowPlaying.artist}</p>
-        {nowPlaying.album && <p className="now-playing-album">Album: {nowPlaying.album}</p>}
+        <p className="now-playing-artist">By: {track.artist}</p>
+        {track.album && <p className="now-playing-album">on {track.album}</p>}
       </div>
     </div>
   ) : (
     <p className="now-playing-empty">
-      <span className="now-playing-dot now-playing-dot--idle" aria-hidden="true" />
-      {spotify.placeholder}
+      <span className={`now-playing-dot ${nowPlaying.status === 'loading' ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
+      {nowPlaying.status === 'loading' ? spotify.loading : spotify.placeholder}
     </p>
   )}
 </Card>

@@ -9,10 +9,15 @@ export type NowPlaying = {
   url: string | null;
 };
 
+export type NowPlayingState =
+  | { status: 'loading' }
+  | { status: 'error' }
+  | { status: 'ok'; data: NowPlaying };
+
 const API = import.meta.env.VITE_API_URL ?? 'http://localhost:8000';
 
 export function useNowPlaying(pollMs = 30000) {
-  const [data, setData] = useState<NowPlaying | null>(null);
+  const [state, setState] = useState<NowPlayingState>({ status: 'loading' });
 
   useEffect(() => {
     let alive = true;
@@ -20,12 +25,16 @@ export function useNowPlaying(pollMs = 30000) {
 
     const load = async () => {
       try {
-        const r = await fetch(`${API}/api/now-playing`);
+        const r = await fetch(`${API}/api/now-playing`, {
+          signal: AbortSignal.timeout(15000),
+        });
         if (!r.ok) throw new Error(String(r.status));
-        const d: NowPlaying = await r.json();
-        if (alive) setData(d);
+        const data: NowPlaying = await r.json();
+        if (alive) setState({ status: 'ok', data });
       } catch {
-        if (alive) setData(null); 
+        if (alive) {
+          setState((prev) => (prev.status === 'ok' ? prev : { status: 'error' }));
+        }
       }
     };
 
@@ -57,5 +66,5 @@ export function useNowPlaying(pollMs = 30000) {
     };
   }, [pollMs]);
 
-  return data;
+  return state;
 }
