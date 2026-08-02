@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import RaytracerDemo from './RaytracerDemo'
 
 
 export type DemoEntry = {
@@ -8,7 +9,7 @@ export type DemoEntry = {
 };
 
 export const demos: DemoEntry[] = [
-  // { id: 'raytracer', title: 'TypeScript raytracer', component: RaytracerDemo },
+  { id: 'raytracer', title: 'TypeScript raytracer', component: RaytracerDemo },
 ];
 
 

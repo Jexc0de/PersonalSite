@@ -59,30 +59,30 @@ export default function App() {
               )
             )}
           </Card>
-<Card title={spotifyTitle} className="area-spotify">
-  {track ? (
-    <div className="now-playing">
-      {track.albumArt && (
-        <div className="now-playing-frame">
-          <img className="now-playing-art" src={track.albumArt} alt="" width={64} height={64} />
-        </div>
-      )}
-      <div className="now-playing-meta">
-        <p className="now-playing-track">
-          <span className={`now-playing-dot ${track.playing ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
-          <a className="card-link" href={track.url ?? undefined} target="_blank" rel="noreferrer">{track.track}</a>
-        </p>
-        <p className="now-playing-artist">By: {track.artist}</p>
-        {track.album && <p className="now-playing-album">on {track.album}</p>}
-      </div>
-    </div>
-  ) : (
-    <p className="now-playing-empty">
-      <span className={`now-playing-dot ${nowPlaying.status === 'loading' ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
-      {nowPlaying.status === 'loading' ? spotify.loading : spotify.placeholder}
-    </p>
-  )}
-</Card>
+          <Card title={spotifyTitle} className="area-spotify">
+            {track ? (
+              <div className="now-playing">
+                {track.albumArt && (
+                  <div className="now-playing-frame">
+                    <img className="now-playing-art" src={track.albumArt} alt="" width={64} height={64} />
+                  </div>
+                )}
+                <div className="now-playing-meta">
+                  <p className="now-playing-track">
+                    <span className={`now-playing-dot ${track.playing ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
+                    <a className="card-link" href={track.url ?? undefined} target="_blank" rel="noreferrer">{track.track}</a>
+                  </p>
+                  <p className="now-playing-artist">By: {track.artist}</p>
+                  {track.album && <p className="now-playing-album">on {track.album}</p>}
+                </div>
+              </div>
+            ) : (
+              <p className="now-playing-empty">
+                <span className={`now-playing-dot ${nowPlaying.status === 'loading' ? '' : 'now-playing-dot--idle'}`} aria-hidden="true" />
+                {nowPlaying.status === 'loading' ? spotify.loading : spotify.placeholder}
+              </p>
+            )}
+          </Card>
             <Card title={yapping.title} id="yapping" className="area-yapping">
               <p>{yapping.body}</p>
                 <p>

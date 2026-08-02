@@ -12,19 +12,19 @@ export const content = {
 
   notice: {
   message: 'That link goes nowhere yet. The database is pending ' +
-    'me figuring out how to setup my homelab.',
+    'me figuring out how to set up my homelab.',
 },
 
 
   about: {
   title: 'About Me',
   body: [
-    'I write C++, Python, and a lil TypeScript. I like my code ' +
+    'I use C++, Python, and sometimes TypeScript. I like my code ' +
       'object oriented and my project scope a little too big. ' +
       'Whatever subfield grabs me that month is where I go, right ' +
       'now that\'s:',
     [
-      'a raytracer for this site',
+      'a homelab for self hosting',
       'a homemade local AI assistant',
       'a tile map editor in C++, with a handmade UI framework',
     ],
@@ -51,8 +51,10 @@ export const content = {
     list: [
       {
         name: 'TypeScript raytracer',
-        desc: 'A port of "Ray Tracing in One Weekend" from C++ to TypeScript, written to learn the language. Headed for the demo box above.',
-        status: 'Almost done!',
+        desc: 'A port of "Ray Tracing in One Weekend" from C++ to TypeScript. I wrote it to learn the language and get a taste of graphics programming. '+
+        'If you look closely you can see the picture getting less grainy as time goes on. That\'s so it doesn\'t initially look like dial-up internet. ' +
+        'I\'ll explain how it gets better and the whole process in a write-up coming soon. ',
+        status: 'DONE!',
       },
       {
         name: 'M.I.R.A.',
@@ -62,11 +64,9 @@ export const content = {
       {
       name: 'Distributed Minecraft chunk generation',
       desc:
-        'Dreaming of better performance on cheaper servers, ' +
-        'the idea is to hand chunk generation off to the ' +
-        'players on the server. Since everything generates from the same ' +
-        'seed, chunks are fully reproducible, so the server can verify ' +
-        'untrusted work by regenerating random samples and comparing hashes.',
+        'The idea is to hand chunk generation off to the ' +
+        'players on the server. Since everything generates from the same seed it stays consistent. ' +
+        'More details later. ',
       status: 'Up next.',
       },
     ],
@@ -75,8 +75,8 @@ export const content = {
   yapping: {
     eyebrow: '[off topic]',
     title: 'Loose Pages',
-    body: 'Movie reviews with a rating out of ten and a few bits of praise or critics, random thoughts, ' +
-  'and project breakdowns that go further than the cards above, ' +
+    body: 'Movie reviews with a rating out of ten and a few bits of praise or criticism, random thoughts, ' +
+  'and project breakdowns that go further than the projects card, ' +
   'including the parts that broke.',
     linkText: 'Reviews, once the database exists →',
   },
