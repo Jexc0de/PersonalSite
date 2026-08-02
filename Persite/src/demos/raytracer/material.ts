@@ -1,13 +1,12 @@
 import { random_double } from "./camera";
-import { hit_record, physical } from "./physical";
+import { hit_record} from "./physical";
 import { ray } from "./ray";
 import { randomUnitVector, Vec3, reflect, UnitVector, DotProduct, refract } from "./Vec3";
 
 export abstract class material{
 
-    scatter(r:ray, rec:hit_record, attenuation:Vec3, scattered:ray){
-        return false;
-    }
+     abstract scatter(r:ray, rec:hit_record, attenuation:Vec3, scattered:ray): boolean;
+
 }
 
 export class lambertian extends material{
@@ -16,7 +15,7 @@ export class lambertian extends material{
         super();
         this.albedo = albedo;
     }
-    scatter(r: ray, rec: hit_record, attenuation: Vec3, scattered: ray): boolean {
+    scatter(_r: ray, rec: hit_record, attenuation: Vec3, scattered: ray): boolean {
         let scatter_dir = rec.normal.VectorAddition(randomUnitVector());
 
         if(scatter_dir.nearZero()){
